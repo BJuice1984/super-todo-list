@@ -1,0 +1,7 @@
+@import './mixins.scss';
+.list {
+  width: 25%;
+  &__title {
+    @include text-format(400, 25px, 22px);
+  }
+}
