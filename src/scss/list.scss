@@ -1,7 +1,27 @@
 @import './mixins.scss';
 .list {
   width: 25%;
+  height: 70vh;
+  background-color: #181429;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+
   &__title {
     @include text-format(400, 25px, 22px);
+    @include reset;
+    margin-top: 10px;
+    color: #867ea6;
+    text-align: center;
+  }
+  &__text {
+    @include reset;
+    @include text-format(200, 18px, 14px);
+    color: #867ea6;
+    margin: 15px;
+  }
+  &__button {
+    width: 80%;
+    margin: 0 auto;
   }
 }
