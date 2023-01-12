@@ -1,4 +1,7 @@
+@import './mixins.scss';
+
 .body {
+  @include reset;
   display: flex;
   gap: 20px;
 }
