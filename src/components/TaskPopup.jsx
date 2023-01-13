@@ -36,7 +36,6 @@ function TaskPopup({ isOpen, onClose, onSubmit }) {
               className="popup__input popup__text"
               id="description-input"
               name="description"
-              required
               minLength="2"
               maxLength="1000"
               placeholder="Description"
@@ -47,7 +46,7 @@ function TaskPopup({ isOpen, onClose, onSubmit }) {
             />
           </label>
           <button type="submit" className="popup__save-button">
-            Сохранить
+            Save
           </button>
         </form>
         <button type="button" className="popup__close-button" onClick={onClose}></button>

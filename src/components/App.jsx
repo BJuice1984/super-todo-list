@@ -23,9 +23,9 @@ function App() {
             return <List key={i} name={i} onOpenPopup={handlePopupOpen} />;
           })}
         </div>
-        <TaskPopup isOpen={isPopupOpen} onClose={handlePopupClose} onSubmit />
         <Footer />
       </div>
+      <TaskPopup isOpen={isPopupOpen} onClose={handlePopupClose} onSubmit />
     </div>
   );
 }
