@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useEscClose, useClickClose } from '../components/utils/UseClose';
+import { useEscClose, useClickClose } from './utils/UseClose';
 
-function TaskPopup({ isOpen, onClose, onSubmit }) {
+function Popup({ title, isOpen, onClose, onSubmit, required, children }) {
   const [name, setName] = useState('');
   const [description, setdDescription] = useState('');
 
@@ -12,15 +12,16 @@ function TaskPopup({ isOpen, onClose, onSubmit }) {
   return (
     <div className={`popup ${isOpen ? 'popup_opened' : ''}`}>
       <div className="popup__container">
-        <h2 className="popup__title">Add Task</h2>
+        <h2 className="popup__title">{title}</h2>
         <form className="popup__form" name="add-task-form" onSubmit={onSubmit}>
+          {children}
           <label className="popup__form-field">
             <input
               type="text"
               className="popup__input popup__text"
               id="name-input"
               name="name"
-              required
+              required={required}
               minLength="2"
               maxLength="200"
               value={name}
@@ -54,4 +55,4 @@ function TaskPopup({ isOpen, onClose, onSubmit }) {
     </div>
   );
 }
-export default TaskPopup;
+export default Popup;

@@ -21,7 +21,10 @@
     margin: 15px;
   }
   &__button {
-    width: 80%;
+    @include size(30px, 80%);
     margin: 0 auto;
+    border-radius: 5px;
+    background-color: #919ac7;
+    color: #545454;
   }
 }
