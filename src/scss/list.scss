@@ -1,7 +1,6 @@
 @import './mixins.scss';
 .list {
-  width: 25%;
-  height: 70vh;
+  @include size(70vh, 25%);
   background-color: #181429;
   border-radius: 10px;
   display: flex;
@@ -11,6 +10,7 @@
     @include text-format(400, 25px, 22px);
     @include reset;
     margin-top: 10px;
+    margin-bottom: 20px;
     color: #867ea6;
     text-align: center;
   }
@@ -21,10 +21,19 @@
     margin: 15px;
   }
   &__button {
-    @include size(30px, 80%);
+    @include size(30px, 50%);
     margin: 0 auto;
     border-radius: 5px;
     background-color: #919ac7;
     color: #545454;
+    cursor: pointer;
+  }
+}
+@media screen and (max-width: 620px) {
+  .list {
+    @include size(fit-content, 100%);
+    &__button {
+      margin-bottom: 10px;
+    }
   }
 }

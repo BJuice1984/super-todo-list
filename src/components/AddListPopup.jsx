@@ -3,14 +3,18 @@ import Popup from './Popup';
 
 function AddListPopup({ isOpen, onClose, onSubmit }) {
   const [listName, setListName] = React.useState('');
+  function handleSubmit(e) {
+    e.preventDefault();
+    onSubmit(listName);
+    setListName('');
+  }
+  const handleClosePopup = () => {
+    onClose();
+    setListName('');
+  };
 
   return (
-    <Popup
-      title="Add New List"
-      isOpen={isOpen}
-      onClose={onClose}
-      onSubmit={onSubmit}
-      required={false}>
+    <Popup title="Add New List" isOpen={isOpen} onClose={handleClosePopup} onSubmit={handleSubmit}>
       <label className="popup__form-field">
         <input
           type="text"
