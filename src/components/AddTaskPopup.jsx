@@ -11,7 +11,7 @@ function AddTaskPopup({ isOpen, onClose, onSubmit }) {
   };
   function handleSubmit(e) {
     e.preventDefault();
-    onSubmit(name);
+    onSubmit(name, description);
     handleClosePopup();
   }
 

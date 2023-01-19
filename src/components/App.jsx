@@ -4,13 +4,13 @@ import Header from './Header';
 import Footer from './Footer';
 import AddListPopup from './AddListPopup';
 import { useDispatch, useSelector } from 'react-redux';
-import { addList, addTaskList } from '../redux/listSlice';
+import { addList, addTaskList, removeTask, removeList } from '../redux/listSlice';
 import AddTaskPopup from './AddTaskPopup';
 
 function App() {
   const [isAddTaskPopupOpen, setIsAddTaskPopupOpen] = useState(false);
   const [isAddListPopupOpen, setIsAddListkPopupOpen] = useState(false);
-  const [currentListName, setCurrentListName] = useState('');
+  const [currentListId, setCurrentListId] = useState(0);
 
   const dispatch = useDispatch();
   const list = useSelector((state) => state.list);
@@ -20,13 +20,13 @@ function App() {
     handlePopupClose();
   }
 
-  function handleAddNewTask(task) {
-    dispatch(addTaskList({ task, currentListName }));
+  function handleAddNewTask(task, description) {
+    dispatch(addTaskList({ task, description, currentListId }));
     handlePopupClose();
   }
 
   function handleTaskPopupOpen(target) {
-    setCurrentListName(target.parentElement.firstChild.textContent);
+    setCurrentListId(target.parentElement.firstChild.firstChild.id);
     setIsAddTaskPopupOpen(true);
   }
 
@@ -37,13 +37,30 @@ function App() {
     setIsAddTaskPopupOpen(false);
     setIsAddListkPopupOpen(false);
   }
+  function handleListRemove(target) {
+    dispatch(removeList(target.parentElement.firstChild.id));
+  }
+  function handleTaskRemove(target) {
+    const selectedTaskId = target.parentElement.id;
+    const selectedListId = target.parentElement.parentElement.firstChild.firstChild.id;
+    dispatch(removeTask({ selectedListId, selectedTaskId }));
+  }
+
   return (
     <div className="main-page">
       <div className="main-page__container">
         <Header onOpenPopup={handleListPopupOpen} />
         <div className="body">
           {list.list.map((i, key) => {
-            return <List key={key} list={i} onOpenPopup={handleTaskPopupOpen} />;
+            return (
+              <List
+                key={key}
+                list={i}
+                onOpenPopup={handleTaskPopupOpen}
+                onRemoveList={handleListRemove}
+                onRemoveTask={handleTaskRemove}
+              />
+            );
           })}
         </div>
         <Footer />
